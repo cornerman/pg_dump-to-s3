@@ -1,0 +1,9 @@
+sudo: required
+services: docker
+
+script:
+    - docker pull cornerman/pg_dump-to-s3:latest
+    - docker build . --cache-from cornerman/pg_dump-to-s3:latest --tag cornerman/pg_dump-to-s3:latest --tag cornerman/pg_dump-to-s3:"$TRAVIS_COMMIT"
+    - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+    - docker push cornerman/pg_dump-to-s3:"$TRAVIS_COMMIT"
+    - docker push cornerman/pg_dump-to-s3:latest
