@@ -46,6 +46,7 @@ error=$?
 if [[ $error != 0 ]]; then
     echo "Error in backup, will send to sns topic!"
     aws sns publish --topic-arn "${AWS_SNS_TOPIC_ARN}" --subject "Postgres Backup failure - $PGHOST" --message "Failed to dump backup to S3. Sorry."
+    exit 2
 fi
 
 echo "Done!"
