@@ -41,7 +41,7 @@ POSTGRES_HOST_OPTS=""
 
 echo "Starting dump of ${PGDATABASE} database(s) from ${PGHOST}..."
 
-pg_dump $PGDUMP_OPTIONS | aws s3 cp - s3://$AWS_BUCKET/$AWS_BUCKET_PREFIX/$(date +"%F-%H-%M-%S-postgres-backup.sql")
+pg_dump $PGDUMP_OPTIONS | aws s3 cp - s3://$AWS_BUCKET/$AWS_BUCKET_PREFIX/$(date +"%F-%H-%M-%S-postgres-backup.dump")
 error=$?
 if [[ $error != 0 ]]; then
     echo "Error in backup, will send to sns topic!"
