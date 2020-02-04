@@ -13,7 +13,7 @@ if [ -z "${AWS_BUCKET_PREFIX}" ]; then
 fi
 
 if [ -z "${AWS_SNS_TOPIC_ARN}" ]; then
-  echo "You need to set the AWS_BUCKET_PREFIX environment variable."
+  echo "You need to set the AWS_SNS_TOPIC_ARN environment variable."
   exit 1
 fi
 
